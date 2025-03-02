@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>18th Street Cafe System - User Guide</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #feb625;
+      --secondary-color: #333333;
+      --light-color: #f8f9fa;
+      --dark-color: #212529;
+    }
+
+    body {
+      padding-top: 56px;
+      position: relative;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .bg-primary {
+      background-color: var(--primary-color) !important;
+    }
+
+    .text-primary {
+      color: var(--primary-color) !important;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .btn-primary:hover {
+      background-color: #e0a010;
+      border-color: #e0a010;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 4rem;
+      height: calc(100vh - 4rem);
+      overflow-y: auto;
+      padding-top: 1.5rem;
+      border-right: 1px solid #dee2e6;
+    }
+
+    .sidebar .nav-link {
+      font-weight: 500;
+      color: var(--dark-color);
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.25rem;
+      border-radius: 0.25rem;
+    }
+
+    .sidebar .nav-link:hover {
+      background-color: rgba(254, 182, 37, 0.1);
+    }
+
+    .sidebar .nav-link.active {
+      background-color: rgba(254, 182, 37, 0.2);
+      color: var(--primary-color);
+    }
+
+    .main-content {
+      padding: 2rem;
+    }
+
+    .card {
+      margin-bottom: 2rem;
+      border: none;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .card-header {
+      background-color: var(--light-color);
+      border-bottom: 2px solid var(--primary-color);
+      font-weight: bold;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--secondary-color);
+    }
+
+    h1 {
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      border-bottom: 2px solid #dee2e6;
+      padding-bottom: 0.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      margin-top: 1.5rem;
+    }
+
+    .feature-icon {
+      background-color: var(--primary-color);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    code {
+      background-color: #f8f9fa;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      color: #d63384;
+    }
+
+    pre {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .footer {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: rgba(254, 182, 37, 0.05);
+    }
+
+    .breadcrumb {
+      margin-bottom: 2rem;
+    }
+
+    .alert-warning {
+      background-color: rgba(254, 182, 37, 0.2);
+      border-color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-example3">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <span style="color: #feb625;">18th</span> Street Cafe System
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#installation">Installation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#system-navigation">Navigation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#troubleshooting">Support</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav id="navbar-example3" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <div class="position-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#introduction">Introduction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#system-requirements">System Requirements</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#installation">Installation Process</a>
+              <ul class="nav flex-column ms-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#step1">Software Setup</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#step2">Database Configuration</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#step3">Project Configuration</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#step4">System Launch</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#system-navigation">System Navigation</a>
+              <ul class="nav flex-column ms-3">
+                <li class="nav-item">
+                  <a class="nav-link" href="#admin-dashboard">Admin Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#staff-interface">Staff Interface</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#advanced-features">Advanced Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#troubleshooting">Troubleshooting</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#maintenance">Maintenance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact & Support</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Main content -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+
+        <div class="d-flex justify-content-center mb-4">
+          <img src="/api/placeholder/400/100" alt="18th Street Cafe System" class="img-fluid"
+            style="max-height: 100px;">
+        </div>
+
+        <h1 id="introduction" class="text-center mb-5">18th Street Cafe System - User Guide</h1>
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">User Guide</li>
+          </ol>
+        </nav>
+
+        <div class="card">
+          <div class="card-body">
+            <h2>Introduction</h2>
+            <p class="lead">Welcome to the <strong>18th Street Cafe System</strong>! This comprehensive guide will help
+              you install, configure, and utilize the system to streamline your cafe operations. Follow these
+              instructions carefully for optimal performance and functionality.</p>
+          </div>
+        </div>
+
+        <h2 id="system-requirements">System Requirements</h2>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <i class="fas fa-server text-primary me-2"></i>
+                    <strong>XAMPP</strong> (Version 8.0 or higher) for PHP, MySQL, and Apache server
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fas fa-code text-primary me-2"></i>
+                    <strong>Visual Studio Code</strong> (Latest version recommended) for code management
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <i class="fas fa-globe text-primary me-2"></i>
+                    <strong>Modern Web Browser</strong> (Chrome, Firefox, Edge, or Safari)
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fas fa-microchip text-primary me-2"></i>
+                    Minimum 4GB RAM, 10GB free disk space
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="installation">Installation Process</h2>
+
+        <div class="card" id="step1">
+          <div class="card-header">
+            <h3>Step 1: Essential Software Setup</h3>
+          </div>
+          <div class="card-body">
+            <ol class="list-group list-group-numbered">
+              <li class="list-group-item">
+                <h5>Install XAMPP</h5>
+                <ul>
+                  <li>Download the latest version from <a href="https://www.apachefriends.org"
+                      target="_blank">www.apachefriends.org</a></li>
+                  <li>Run the installer with default settings</li>
+                  <li>Verify installation by launching XAMPP Control Panel</li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                <h5>Install Visual Studio Code</h5>
+                <ul>
+                  <li>Download from <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a>
+                  </li>
+                  <li>Install recommended extensions for PHP development:
+                    <ul>
+                      <li>PHP Intelephense</li>
+                      <li>PHP Debug</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card" id="step2">
+          <div class="card-header">
+            <h3>Step 2: Database Configuration</h3>
+          </div>
+          <div class="card-body">
+            <ol class="list-group list-group-numbered">
+              <li class="list-group-item">
+                <h5>Launch Services</h5>
+                <ul>
+                  <li>Open XAMPP Control Panel</li>
+                  <li>Start Apache and MySQL services (ensure ports 80 and 3306 are available)</li>
+                </ul>
+                <div class="alert alert-warning mt-2">
+                  <i class="fas fa-exclamation-triangle me-2"></i>
+                  If services fail to start, check if other applications are using the required ports.
+                </div>
+              </li>
+              <li class="list-group-item">
+                <h5>Create Database</h5>
+                <ul>
+                  <li>Navigate to <a href="http://localhost/phpmyadmin/"
+                      target="_blank">http://localhost/phpmyadmin/</a></li>
+                  <li>Click on "Databases" tab</li>
+                  <li>Create a new database named <code>18thstreet</code> with UTF-8 Unicode collation</li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                <h5>Import Database Structure</h5>
+                <ul>
+                  <li>Select the newly created <code>18thstreet</code></li>
+                  <li>Click "Import" tab</li>
+                  <li>Browse and select the provided <code>18thstreet.sql</code> file</li>
+                  <li>Click "Go" to execute the import</li>
+                  <li>Confirm all tables appear correctly (users, menu, orders, inventory, payments)</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card" id="step3">
+          <div class="card-header">
+            <h3>Step 3: Project Configuration</h3>
+          </div>
+          <div class="card-body">
+            <ol class="list-group list-group-numbered">
+              <li class="list-group-item">
+                <h5>Deploy Project Files</h5>
+                <ul>
+                  <li>Extract the <code>18th_street_cafe</code> folder to <code>C:\xampp\htdocs\</code> (Windows) or
+                    <code>/Applications/XAMPP/htdocs/</code> (Mac)</li>
+                  <li>Ensure all files maintain their original directory structure</li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                <h5>Configure Database Connection</h5>
+                <ul>
+                  <li>Open the project in Visual Studio Code</li>
+                  <li>Locate and edit <code>db/database.php</code> in the root directory:</li>
+                </ul>
+                <pre><code>&lt;?php
+// Database connection parameters
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "18thstreet";
+
+// Establish connection
+$conn = new mysqli($host, $user, $pass, $db);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Set character encoding
+$conn->set_charset("utf8mb4");
+?&gt;</code></pre>
+              </li>
+              <li class="list-group-item">
+                <h5>Verify File Permissions</h5>
+                <ul>
+                  <li>Ensure the <code>uploads</code> and <code>temp</code> folders have write permissions</li>
+                  <li>For Linux/Mac: <code>chmod 755</code> for directories and <code>chmod 644</code> for files</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+<div class="card" id="step4">
+  <div class="card-header">
+    <h3>Step 4: System Launch</h3>
+  </div>
+  <div class="card-body">
+    <ol class="list-group list-group-numbered">
+      <li class="list-group-item">
+        <h5>Verify Services</h5>
+        <ul>
+          <li>Confirm both Apache and MySQL are running in XAMPP Control Panel</li>
+          <li>Check for any error messages in the logs</li>
+        </ul>
+      </li>
+      <li class="list-group-item">
+        <h5>Access The Application</h5>
+        <ul>
+          <li>Open your preferred browser</li>
+          <li>Navigate to <a href="http://localhost/18th_street_cafe/"
+              target="_blank">http://localhost/18th_street_cafe/</a></li>
+          <li>You should see the login screen</li>
+        </ul>
+      </li>
+      <li class="list-group-item">
+        <h5>Initial Login</h5>
+        <ul>
+          <li>Use the default administrator credentials:
+            <ul>
+              <li>Username: <code>admin</code></li>
+              <li>Password: <code>admin123</code></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="alert alert-warning mt-2">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          <strong>Important:</strong> Change the default password immediately after first login for security purposes.
+        </div>
+      </li>
+      <li class="list-group-item">
+        <h5>Administrator Access</h5>
+        <ul>
+          <li>To directly access the administrator panel, navigate to: <a
+              href="http://localhost/18th_street_cafe/admin/admin_login.php"
+              target="_blank">http://localhost/18th_street_cafe/admin/admin_login.php</a></li>
+          <li>Use the same administrator credentials mentioned above</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</div>
+
+        <h2 id="system-navigation">System Navigation</h2>
+
+        <div id="admin-dashboard" class="card">
+          <div class="card-header">
+            <h3>Administrator Dashboard</h3>
+          </div>
+          <div class="card-body">
+            <p>The admin dashboard provides complete control over the cafe management system:</p>
+            <div class="row row-cols-1 row-cols-md-2 g-4 mt-2">
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="feature-icon me-3">
+                        <i class="fas fa-chart-line"></i>
+                      </div>
+                      <h5 class="card-title mb-0">Analytics Overview</h5>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Real-time sales metrics</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Customer traffic patterns</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Inventory status alerts</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="feature-icon me-3">
+                        <i class="fas fa-utensils"></i>
+                      </div>
+                      <h5 class="card-title mb-0">Menu Management</h5>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Add/remove menu items with images</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Update prices and descriptions</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Create categories and specials</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Manage availability status</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="feature-icon me-3">
+                        <i class="fas fa-users"></i>
+                      </div>
+                      <h5 class="card-title mb-0">Administrator</h5>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Create and manage staff accounts</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Assign role-based permissions</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Track employee performance</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Manage schedules and attendance</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="feature-icon me-3">
+                        <i class="fas fa-boxes"></i>
+                      </div>
+                      <h5 class="card-title mb-0">Inventory Control</h5>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Monitor stock levels</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Set automatic reorder points</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Generate purchase orders</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Track invetory usage(manual)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="staff-interface" class="card">
+          <div class="card-header">
+            <h3>Staff Interface</h3>
+          </div>
+          <div class="card-body">
+            <p>The staff interface is streamlined for efficient customer service:</p>
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="feature-icon me-3">
+                        <i class="fas fa-clipboard-list"></i>
+                      </div>
+                      <h5 class="card-title mb-0">Order Management</h5>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Manage new customer orders</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Modify status of the existing orders</li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="feature-icon me-3">
+                        <i class="fas fa-chair"></i>
+                      </div>
+                    <h5 class="card-title mb-0">Order Tracking</h5>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> View all current orders</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Change order status (pending, delivering, delivered)</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Filter orders by status</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> View order history and details</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="feature-icon me-3">
+                        <i class="fas fa-cash-register"></i>
+                      </div>
+                      <h5 class="card-title mb-0">Checkout Process</h5>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Generate sales</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Process multiple payment methods(Gcash/COD)</li>
+                      <li><i class="fas fa-check-circle text-primary me-2"></i> Apply loyalty points</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="advanced-features">Advanced Features</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title text-primary"><i class="fas fa-award me-2"></i> Customer Loyalty Program</h5>
+                <ul class="list-unstyled">
+                  <li><i class="fas fa-check-circle text-primary me-2"></i> Track customer visits and spending</li>
+                  <li><i class="fas fa-check-circle text-primary me-2"></i> Award and redeem points</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title text-primary"><i class="fas fa-box-open me-2"></i> Inventory Integration</h5>
+                <ul class="list-unstyled">
+                  <li><i class="fas fa-check-circle text-primary me-2"></i> Manual stock deduction</li>
+                  <li><i class="fas fa-check-circle text-primary me-2"></i> Item cost</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title text-primary"><i class="fas fa-mobile-alt me-2"></i> Mobile Responsiveness</h5>
+                <ul class="list-unstyled">
+                  <li><i class="fas fa-check-circle text-primary me-2"></i> Compatible with tablets for table-side
+                    ordering</li>
+                  <li><i class="fas fa-check-circle text-primary me-2"></i> Optimized interface for different screen
+                    sizes</li>
+                  <li><i class="fas fa-check-circle text-primary me-2"></i> Touch-friendly controls</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="troubleshooting">Troubleshooting Guide</h2>
+        <div class="card">
+          <div class="card-header">
+            <h3>Common Issues and Solutions</h3>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>Issue</th>
+                    <th>Possible Cause</th>
+                    <th>Solution</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Database connection failure</td>
+                    <td>MySQL service not running</td>
+                    <td>Start MySQL in XAMPP Control Panel</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>Incorrect database credentials</td>
+                    <td>Verify settings in <code>database.php</code></td>
+                  </tr>
+                  <tr>
+                    <td>Page not found (404)</td>
+                    <td>Incorrect URL path</td>
+                    <td>Ensure correct folder name in URL</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>Missing index file</td>
+                    <td>Check if <code>index.php</code> exists in root directory</td>
+                  </tr>
+                  <tr>
+                    <td>Image upload failure</td>
+                    <td>Permission issues</td>
+                    <td>Check folder permissions for <code>uploads</code> directory</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>File size too large</td>
+                    <td>Modify PHP settings in <code>php.ini</code></td>
+                  </tr>
+                  <tr>
+                    <td>Slow performance</td>
+                    <td>Database needs optimization</td>
+                    <td>Run provided maintenance script <code>optimize_db.php</code></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>High server load</td>
+                    <td>Consider upgrading server resources</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          
+            <div class="alert alert-info mt-4">
+              <div class="d-flex">
+                <div class="me-3">
+                  <i class="fas fa-info-circle fa-2x"></i>
+                </div>
+                <div>
+                  <h5 class="alert-heading">Error Logging</h5>
+                  <p class="mb-0">The system logs errors to <code>logs/system_errors.log</code>. Check this file when
+                    troubleshooting to identify specific issues.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          
+          <h2 id="maintenance">Maintenance Recommendations</h2>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="d-flex mb-3">
+                    <div class="feature-icon me-3">
+                      <i class="fas fa-database"></i>
+                    </div>
+                    <div>
+                      <h5>Database Backup</h5>
+                      <p>Back up the database weekly using PHPMyAdmin export function</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex mb-3">
+                    <div class="feature-icon me-3">
+                      <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div>
+                      <h5>System Updates</h5>
+                      <p>Update the system when new versions are released</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex mb-3">
+                    <div class="feature-icon me-3">
+                      <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div>
+                      <h5>Performance Optimization</h5>
+                      <p>Run the optimization script monthly: <code>http://localhost/18th_street_cafe/admin/optimize.php</code>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-flex mb-3">
+                    <div class="feature-icon me-3">
+                      <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                      <h5>Security Updates</h5>
+                      <p>Check for security updates to XAMPP and PHP regularly</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <h2 id="contact">Contact and Support</h2>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fas fa-envelope text-primary me-2"></i> Email Support</h5>
+                      <p class="card-text">For technical assistance via email:</p>
+                      <p class="card-text"><a href="mailto:street750@gmail.com" class="btn btn-primary"><i
+                            class="fas fa-envelope me-2"></i> street750@gmail.com</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fas fa-phone-alt text-primary me-2"></i> Phone Support</h5>
+                      <p class="card-text">Support Phone (Mon-Fri, 9am-5pm EST):</p>
+                      <p class="card-text"><a href="tel:+639504367685 class="btn btn-primary"><i class="fas fa-phone-alt me-2"></i>
+                          +63 950-0436-7685</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fas fa-book text-primary me-2"></i> Documentation</h5>
+                      <p class="card-text">Access our comprehensive documentation:</p>
+                      <p class="card-text"><a href="https://docs.18thstreetcafe.com" target="_blank" class="btn btn-primary"><i
+                            class="fas fa-external-link-alt me-2"></i> docs.18thstreetcafe.com</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fas fa-ticket-alt text-primary me-2"></i> Support Tickets</h5>
+                      <p class="card-text">Submit and track support requests:</p>
+                      <p class="card-text"><a href="https://support.18thstreetcafe.com" target="_blank" class="btn btn-primary"><i
+                            class="fas fa-external-link-alt me-2"></i> support.18thstreetcafe.com</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+        <footer class="footer mt-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h5><span style="color: #feb625;">18th</span> <span style="color: #FFFFFF;"> Street Cafe System </span></h5>
+                <p>© 2025 18th Quantum Alliance Group | All Rights Reserved</p>
+              </div>
+              <div class="col-md-6 text-md-end">
+                <div class="mb-3">
+                  <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                  <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p><small>Version 2.5.3</small></p>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <hr class="my-2" style="border-color: rgba(255,255,255,0.2);">
+                <div class="d-flex justify-content-center flex-wrap">
+                  <span class="px-3 py-1"><small>Robert Kient Husain - Programmer and Project Manager</small></span>
+                  <span class="px-3 py-1"><small>Angeline Gablino - Technical Writer</small></span>
+                  <span class="px-3 py-1"><small>Georgine Palabrica - Quality Assurance and System Analyst</small></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+          <!-- Bootstrap Bundle with Popper -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
